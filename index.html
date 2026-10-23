@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feria Tecnológica Heidi 2026 — Alumbrado Público Automático</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px 30px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            margin-bottom: 10px;
+        }
+
+        header .subtitle {
+            font-size: 1.1rem;
+            color: #a0c4d8;
+            margin-bottom: 6px;
+        }
+
+        header .project-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 16px;
+            padding: 20px 0 40px;
+        }
+
+        @media (min-width: 600px) {
+            .buttons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .btn-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 14px;
+            padding: 24px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .btn-card:hover {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: #00d4ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 212, 255, 0.2);
+        }
+
+        .btn-card .icon {
+            font-size: 2rem;
+        }
+
+        .btn-card .btn-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .btn-card .btn-desc {
+            font-size: 0.85rem;
+            color: #a0c4d8;
+            margin-top: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #6b8a9e;
+            font-size: 0.85rem;
+        }
+
+        #content-area {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #00d4ff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🔆 Feria Tecnológica Heidi 2026</h1>
+            <p class="subtitle">Proyecto:</p>
+            <p class="project-name">ALUMBRADO PÚBLICO AUTOMÁTICO</p>
+        </header>
+
+        <div class="buttons-grid">
+            <!-- BOTÓN 1: PERFIL (Descarga Word) -->
+            <a href="perfil.docx" download class="btn-card">
+                <span class="icon">📋</span>
+                <div>
+                    <div class="btn-text">Perfil del Proyecto</div>
+                    <div class="btn-desc">Descargar documento Word</div>
+                </div>
+            </a>
+
+            <!-- BOTÓN 2: MATERIALES (Descarga Word) -->
+            <a href="materiales.docx" download class="btn-card">
+                <span class="icon">🔧</span>
+                <div>
+                    <div class="btn-text">Materiales y Herramientas</div>
+                    <div class="btn-desc">Descargar documento Word</div>
+                </div>
+            </a>
+
+            <!-- BOTÓN 3: FOTOS (Muestra mensaje en pantalla) -->
+            <a href="#fotos" class="btn-card" onclick="showSection('fotos')">
+                <span class="icon">📸</span>
+                <div>
+                    <div class="btn-text">Registro Fotográfico</div>
+                    <div class="btn-desc">Ver imágenes del montaje</div>
+                </div>
+            </a>
+
+            <!-- BOTÓN 4: COSTOS (Descarga Excel) -->
+            <a href="costos.xlsx" download class="btn-card">
+                <span class="icon">💰</span>
+                <div>
+                    <div class="btn-text">Lista de Costos</div>
+                    <div class="btn-desc">Descargar Excel</div>
+                </div>
+            </a>
+
+            <!-- BOTÓN 5: CRONOGRAMA (Muestra texto en pantalla) -->
+            <a href="#cronograma" class="btn-card" onclick="showSection('cronograma')">
+                <span class="icon">📅</span>
+                <div>
+                    <div class="btn-text">Cronograma</div>
+                    <div class="btn-desc">Fases y fechas de realización</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Aquí aparecerá la información al tocar los botones 3 y 5 -->
+        <div id="content-area" style="display: none;"></div>
+
+        <footer>
+            <p>Feria Tecnológica Heidi 2026 · Proyecto de Tecnología</p>
+        </footer>
+    </div>
+
+    <script>
+        const sections = {
+            fotos: `
+        <h2 style="color:#00d4ff;margin-bottom:15px;">📸 Registro Fotográfico</h2>
+        <p style="color:#c0d8e8;line-height:1.6;">
+          Las fotografías del montaje del circuito, los sensores y las pruebas de funcionamiento 
+          se estarán presentando de forma física y digital durante la Feria Tecnológica Heidi 2026.
+        </p>
+      `,
+            cronograma: `
+        <h2 style="color:#00d4ff;margin-bottom:15px;">📅 Cronograma de Realización</h2>
+        <ul style="line-height:2.2;color:#c0d8e8;padding-left:20px;">
+          <li><strong>Semana 1:</strong> Investigación y definición del proyecto</li>
+          <li><strong>Semana 2:</strong> Diseño del circuito y adquisición de materiales</li>
+          <li><strong>Semana 3:</strong> Montaje del prototipo en protoboard</li>
+          <li><strong>Semana 4:</strong> Programación y pruebas de sensores</li>
+          <li><strong>Semana 5:</strong> Ajustes finales y documentación</li>
+          <li><strong>Semana 6:</strong> Presentación en la Feria Heidi 2026</li>
+        </ul>
+      `
+        };
+
+        function showSection(key) {
+            const area = document.getElementById('content-area');
+            area.innerHTML = sections[key] || '';
+            area.style.display = 'block'; // Hace visible el cuadro
+            area.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+    </script>
+</body>
+
+</html>
